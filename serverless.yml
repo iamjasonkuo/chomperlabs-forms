@@ -92,10 +92,10 @@ functions:
     handler: list.orderList
     events:
       - http:
-        path: notes/{id}
-        method: get
-        cors: true
-        authorizer: aws_iam
+          path: notes/{id}
+          method: get
+          cors: true
+          authorizer: aws_iam
 
   update:
     # Defines an HTTP API endpoint that calls the main function in update.js
