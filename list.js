@@ -33,4 +33,11 @@ export async function orderList(event, context) {
       ":orderId": event.pathParameters.id
     }
   }
+
+  try {
+    const result = await dynamoDbLib.call("query", params);
+    return success(result.Items);
+  } catch (e) {
+    return failure({ status: false });
+  }
 }
