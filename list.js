@@ -3,7 +3,7 @@ import { success, failure } from "./libs/response-lib";
 
 export async function main(event, context) {
   const params = {
-    TableName: "notes",
+    TableName: process.env.tableName,
     // 'KeyConditionExpression' defines the condition for the query
     // - 'userId = :userId': only return items with matching 'userId'
     //   partition key
@@ -22,5 +22,15 @@ export async function main(event, context) {
     return success(result.Items);
   } catch (e) {
     return failure({ status: false });
+  }
+}
+
+export async function orderList(event, context) {
+  const params = {
+    TableName: process.env.tableName,
+    KeyConditionExpression: "orderId = :orderId",
+    ExpressionAttributeValues: {
+      ":orderId": event.pathParameters.id
+    }
   }
 }
