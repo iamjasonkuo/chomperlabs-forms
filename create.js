@@ -7,12 +7,17 @@ export async function main(event, context) {
   const params = {
     TableName: process.env.tableName,
     Item: {
-      orderId: uuid.v1(), //or use the ordernumber that shipstation generates
+      orderId: data.orderId,
       userId: event.requestContext.identity.cognitoIdentityId,
-      // noteId: uuid.v1(),
-      content: data.content,
-      attachment: data.attachment,
-      // LIST OUT ALL THE INFORMATION THAT IS BEING RECEIVED FROM THE CLIENT
+      firstName: data.firstName,
+      lastName: data.lastName,
+      email: data.email,
+      shippingAddressStreet: data.shippingAddressStreet,
+      shippingAddressCity: data.shippingAddressCity,
+      shippingAddressState: data.shippingAddressState,
+      shippingAddressZip: data.shippingAddressZip,
+      impression: data.impression,
+      product: data.product,      
       createdAt: Date.now()
     }
   };
